@@ -1,0 +1,12 @@
+{
+  "name": "@giancarl021/type-inference",
+  "version": "0.1.0",
+  "description": "Infer JavaScript types from a string",
+  "main": "index.js",
+  "scripts": {
+    "test": "node test.spec.js"
+  },
+  "repository": "https://github.com/Giancarl021/type-inference.git",
+  "author": "Giancarlo Fontela da Luz <gian.f.luz@hotmail.com>",
+  "license": "MIT"
+}
