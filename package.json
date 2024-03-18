@@ -1,16 +1,29 @@
 {
-  "name": "@giancarl021/type-inference",
-  "version": "0.1.3",
-  "description": "Infer JavaScript types from a string",
-  "main": "index.js",
-  "scripts": {
-    "generate-types": "npx tsc index.js --declaration --emitDeclarationOnly --allowJs",
-    "test": "node test.spec.js"
-  },
-  "repository": "https://github.com/Giancarl021/type-inference.git",
-  "author": "Giancarlo Fontela da Luz <gian.f.luz@hotmail.com>",
-  "license": "MIT",
-  "devDependencies": {
-    "typescript": "^4.6.2"
-  }
+    "name": "@giancarl021/type-inference",
+    "version": "1.0.0",
+    "description": "Infer JavaScript primitive types from a string",
+    "main": "index.js",
+    "type": "module",
+    "files": [
+        "lib/**/*"
+    ],
+    "engines": {
+        "node": ">=20.0.0"
+    },
+    "scripts": {
+        "build": "tsc",
+        "format": "prettier -w .",
+        "test": "node --import \"data:text/javascript,import { register } from 'node:module'; import { pathToFileURL } from 'node:url'; register('ts-node/esm', pathToFileURL('./'));\" index.test.ts",
+        "prepare": "husky install"
+    },
+    "repository": "https://github.com/Giancarl021/type-inference.git",
+    "author": "Giancarlo Fontela da Luz <gian.f.luz@hotmail.com>",
+    "license": "MIT",
+    "devDependencies": {
+        "@types/node": "^20.11.28",
+        "husky": "^8.0.3",
+        "prettier": "^3.2.5",
+        "ts-node": "^10.9.2",
+        "typescript": "^5.4.2"
+    }
 }
