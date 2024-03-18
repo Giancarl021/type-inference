@@ -23,9 +23,9 @@ jobs:
                   cache: 'pnpm'
 
             - name: Set publishing config
-              run: pnpm config set '//registry.npmjs.org/:_authToken' "$NODE_AUTH_TOKEN"
+              run: pnpm config set "//registry.npmjs.org/:_authToken=$NODE_AUTH_TOKEN"
               env:
-                  NODE_AUTH_TOKEN: ${{ secrets.npm_token }}
+                  NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
             - name: Install dependencies
               run: pnpm install --frozen-lockfile
