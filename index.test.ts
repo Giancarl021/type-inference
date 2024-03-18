@@ -1,7 +1,9 @@
-const { deepStrictEqual } = require('assert');
-const infer = require('./index');
+import { deepStrictEqual } from 'assert';
+import inferType from './index.js';
 
-const typeError = new Error('input is not a string');
+import type { InferationResult } from './index.js';
+
+const typeError = new Error('Input is not a string');
 
 const subjects = [
     // Inferred
@@ -16,6 +18,7 @@ const subjects = [
     '-123.456',
     '1e5',
     '-1e5',
+    '    100000     ',
     // Double-quoted escaped
     '"null"',
     '"undefined"',
@@ -28,6 +31,7 @@ const subjects = [
     '"-123.456"',
     '"1e5"',
     '"-1e5"',
+    '"    100000     "',
     // Single-quoted escaped
     "'null'",
     "'undefined'",
@@ -40,6 +44,7 @@ const subjects = [
     "'-123.456'",
     "'1e5'",
     "'-1e5'",
+    "'    100000     '",
     // Edge cases
     null,
     undefined,
@@ -81,6 +86,7 @@ const expected = [
     -123.456,
     1e5,
     -1e5,
+    100000,
     // Double-quoted escaped
     'null',
     'undefined',
@@ -93,6 +99,7 @@ const expected = [
     '-123.456',
     '1e5',
     '-1e5',
+    '    100000     ',
     // Single-quoted escaped
     'null',
     'undefined',
@@ -105,22 +112,39 @@ const expected = [
     '-123.456',
     '1e5',
     '-1e5',
+    '    100000     ',
     // Edge cases
     ...new Array(25).fill(typeError)
 ];
 
-const actual = subjects.map(s => {
-    try {
-        return infer(s);
-    } catch (err) {
-        return err;
-    }
-});
+const testsLength = subjects.length;
+let passed = 0;
 
-try {
-    deepStrictEqual(actual, expected);
-    console.log('✅ All tests passed!');
-} catch (err) {
-    console.log('❎ Tests failed!');
-    console.error(err.message);
+for (let i = 0; i < testsLength; i++) {
+    const subjectItem = subjects[i];
+    const expectedItem = expected[i];
+    let actualItem: InferationResult | Error;
+
+    try {
+        actualItem = inferType(subjectItem as any);
+    } catch (error) {
+        actualItem = error as Error;
+    }
+
+    try {
+        deepStrictEqual(actualItem, expectedItem);
+        passed++;
+    } catch {
+        console.error(
+            `Test failed:\n  Expected: ${expectedItem}\n  Actual: ${actualItem}`
+        );
+    }
+}
+
+if (passed === subjects.length) {
+    console.log('All tests passed successfully');
+    process.exit(0);
+} else {
+    console.error(`${passed} of ${testsLength} tests passed`);
+    process.exit(1);
 }

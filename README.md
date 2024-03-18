@@ -2,7 +2,6 @@
 
 Infer JavaScript types from a string
 
-
 ## Installation
 
 npm:
@@ -39,12 +38,14 @@ const escapedString = infer('"null"'); // 'null'
 If you want to test the library, you can run the tests by running the following commands on the root of the project:
 
 npm:
+
 ```bash
 npm install
 npm test
 ```
 
 Yarn:
+
 ```bash
 yarn
 yarn test
