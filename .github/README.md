@@ -20,4 +20,7 @@ The package exports a single function:
 import inferType from '@giancarl021/type-inference';
 
 const myInferedNumber = inferType('10');
+
+console.log(typeof myInferedNumber === 'number');
+// true
 ```
