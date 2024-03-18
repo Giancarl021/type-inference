@@ -19,6 +19,8 @@ const subjects = [
     '1e5',
     '-1e5',
     '    100000     ',
+    'Infinity',
+    '-Infinity',
     // Double-quoted escaped
     '"null"',
     '"undefined"',
@@ -87,6 +89,8 @@ const expected = [
     1e5,
     -1e5,
     100000,
+    Infinity,
+    -Infinity,
     // Double-quoted escaped
     'null',
     'undefined',
@@ -123,7 +127,7 @@ let passed = 0;
 for (let i = 0; i < testsLength; i++) {
     const subjectItem = subjects[i];
     const expectedItem = expected[i];
-    let actualItem: InferationResult | Error;
+    let actualItem: InferationResult<any> | Error;
 
     try {
         actualItem = inferType(subjectItem as any);
