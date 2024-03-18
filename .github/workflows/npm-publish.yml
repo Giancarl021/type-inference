@@ -28,7 +28,7 @@ jobs:
                   NODE_AUTH_TOKEN: ${{ secrets.npm_token }}
 
             - name: Install dependencies
-              run: pnpm run ci
+              run: pnpm run install --frozen-lockfile
 
             - name: Run tests
               run: pnpm run test
