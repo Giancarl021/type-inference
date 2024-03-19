@@ -38,10 +38,8 @@ jobs:
             - name: Set publishing config
               shell: bash
               run: |
-                  pnpm config set "registry" "https://registry.npmjs.org/"
-                  pnpm config set "//registry.npmjs.org/:_authToken" "$NODE_AUTH_TOKEN"
-              env:
-                  NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+                  pnpm config set "registry=https://registry.npmjs.org/"
+                  pnpm config set "//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}"
 
             - name: Get PNPM Config
               run: |
