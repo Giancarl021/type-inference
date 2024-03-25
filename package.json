@@ -1,8 +1,8 @@
 {
     "name": "@giancarl021/type-inference",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "description": "Infer JavaScript primitive types from a string",
-    "main": "index.js",
+    "main": "lib/index.js",
     "type": "module",
     "files": [
         "lib/**/*"
